@@ -1,0 +1,43 @@
+@white: #fff;
+@gray: #373737;
+@navy: #2183C9;
+@blue: #23A1C0;
+@green: #20A78E;
+@orange: #FD6C00;
+@yellow: #FAC510;
+@red: #DD2929;
+@beige: #9a968a;
+
+@gray-light: lighten(@gray, 72%);
+
+@beige-lighter: lighten(@beige, 25%);
+@beige-dark: darken(@beige, 15%);
+
+@bordo: #af625e;
+@bordo-dark: darken(@bordo, 15%);
+@bordo-lighter: lighten(@bordo, 10%);
+@bordo-light: lighten(@bordo, 25%);
+
+@base-font-size: 1rem;
+
+.generate-columns(12);
+.container {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col-@{i} {
+    width: (@i * 100% / @n);
+    float: left;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .generate-columns(@n, (@i + 1));
+}

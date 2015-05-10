@@ -1,0 +1,206 @@
+.col-1 {
+  width: 8.33333333%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-2 {
+  width: 16.66666667%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-3 {
+  width: 25%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-4 {
+  width: 33.33333333%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-5 {
+  width: 41.66666667%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-6 {
+  width: 50%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-7 {
+  width: 58.33333333%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-8 {
+  width: 66.66666667%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-9 {
+  width: 75%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-10 {
+  width: 83.33333333%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-11 {
+  width: 91.66666667%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-12 {
+  width: 100%;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.container {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+.container:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+@font-face {
+  font-family: "dobkinplain";
+  src: url('../fonts/dobkinplain/dobkinplain-webfont.eot');
+  src: url('../fonts/dobkinplain/dobkinplain-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/dobkinplain/dobkinplain-webfont.woff') format('woff'), url('../fonts/dobkinplain/dobkinplain-webfont.otf') format('truetype'), url('../fonts/dobkinplain/dobkinplain-webfont.svg#dobkinplain') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "montserratregular";
+  src: url('../fonts/montserrat-regular/montserrat-regular-webfont.eot');
+  src: url('../fonts/montserrat-regular/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-regular/montserrat-regular-webfont.woff') format('woff'), url('../fonts/montserrat-regular/montserrat-regular-webfont.otf') format('truetype'), url('../fonts/montserrat-regular/montserrat-regular-webfont.svg#montserratregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "walkway";
+  src: url('../fonts/walkway/walkway_semiBold-webfont.eot');
+  src: url('../fonts/walkway/walkway_semiBold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/walkway/walkway_semiBold-webfont.woff') format('woff'), url('../fonts/walkway/walkway_semiBold-webfont.otf') format('truetype'), url('../fonts/walkway/walkway_semiBold-webfont.svg#walkway') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "fontello";
+  src: url('../fonts/fontello/fontello.eot');
+  src: url('../fonts/fontello/fontello.eot?#iefix') format('embedded-opentype'), url('../fonts/fontello/fontello.woff') format('woff'), url('../fonts/fontello/fontello.otf') format('truetype'), url('../fonts/fontello/fontello.svg#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 0;
+}
+.icon-pencil:before {
+  content: '\e800';
+}
+/* '' */
+.icon-trash-empty:before {
+  content: '\e801';
+}
+/* '' */
+.icon-eye:before {
+  content: '\e802';
+}
+/* '' */
+.icon-plus:before {
+  content: '\e803';
+}
+/* '' */
+.icon-globe:before {
+  content: '\e805';
+}
+/* '' */
+.icon-list-bullet:before {
+  content: '\e806';
+}
+/* '' */
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  height: 44px;
+  line-height: 38px;
+  vertical-align: middle;
+  text-align: center;
+  background: none;
+  border: 3px solid #d9b5b3;
+  color: #c08380;
+  text-decoration: none;
+  padding: 0 16px;
+  outline: none;
+  font-size: 0.8rem;
+  transition: border 0.25s ease-in, background-color 0.25s ease-in, color 0.25s ease-in;
+}
+.btn:hover {
+  background: rgba(192, 131, 128, 0.15);
+}
+.btn:active {
+  background: rgba(192, 131, 128, 0.35);
+}
+.btn[disabled] {
+  border-color: rgba(217, 181, 179, 0.25);
+  color: rgba(192, 131, 128, 0.25);
+}
+.btn[disabled]:hover,
+.btn[disabled]:active {
+  background: transparent;
+}
+.btn.block {
+  width: 100%;
+}
+.btn.primary {
+  background: #af625e;
+  border: 1px solid #a85853;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #ffffff;
+  border-radius: 2px;
+  border: transparent;
+}
+.btn.primary:hover {
+  background: #c08380;
+}
+.btn.primary:active {
+  border-color: transparent;
+  background: #814340;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) inset;
+}
+.btn.square {
+  width: 44px;
+  padding: 0;
+}
+.btn.xlight {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+.btn.xlight:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.btn.xlight:active,
+.btn.xlight.active {
+  background: rgba(255, 255, 255, 0.45);
+}

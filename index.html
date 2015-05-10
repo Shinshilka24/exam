@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.0.7/parsley.js"></script>
+	<script src="js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+</head>
+<body>
+    <script type="text/tpl" id="nav_tpl">
+        <nav class="nav">
+            <ul>
+                <li>
+                    <div class="line"></div>
+                    <a href="#form" class="btn square icon-plus"></a>
+                </li>
+                <li>
+                    <div class="line"></div>
+                    <a href="#list" class="btn square icon-list-bullet"></a>
+                </li>
+                <li>
+                    <div class="line"></div>
+                    <a href="#map" class="btn square icon-globe"></a>
+                </li>
+            </ul>
+        </nav>
+    </script>
+	<section class="container">
+
+        <script type="text/tpl" id="form_tpl">
+            <div class="new-event col-7">
+                <div class="form-title">
+                    <span class="text">
+                        Add new event
+                    </span>
+                </div>
+                <div class="form-content">
+                    <form class="event-form">
+                        <div class="row">
+                            <div class="form-group">
+                                <input placeholder="Title" name="title" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group calendar">
+                                <input id="date" placeholder="Date" name="date" type="text" class="form-control inline-form" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="editor">
+                                <div class="editor-item">
+                                    <div class="item f-size">
+                                        <span class="title">Font-size:</span>
+                                        <select>
+                                            <option>1.125rem</option>
+                                            <option>1.25rem</option>
+                                            <option>1.375rem</option>
+                                            <option>1.5rem</option>
+                                            <option>1.625rem</option>
+                                            <option>1.875rem</option>
+                                            <option>2rem</option>
+                                        </select>
+                                    </div>
+                                    <div class="item f-family">
+                                        <span class="title">Font-family:</span>
+                                        <select>
+                                            <option>'montserratregular'</option>
+                                            <option>'walkway'</option>
+                                            <option>arial</option>
+                                            <option>'dobkinplain'</option>
+                                            <option>Times New Roman</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="editor-item">
+                                    <div class="item color">
+                                        <span class="title">Colors:</span>
+                                        <span class="color-box navy"></span>
+                                        <span class="color-box blue"></span>
+                                        <span class="color-box green"></span>
+                                        <span class="color-box orange"></span>
+                                        <span class="color-box yellow"></span>
+                                        <span class="color-box red"></span>
+                                        <span class="color-box bordo"></span>
+                                        <span class="color-box beige active"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Description" name="description" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row images">
+                            <div class="form-group">
+                                <input id="image" placeholder="Image" name="image" type="text" class="form-control" required>
+                            </div>
+                            <!--<button type="button" class="btn" disabled>Add more</button>-->
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <input placeholder="Video (optional)" name="video" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <input placeholder="Map (optional)" name="map" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="r-item">
+                                    <input type="checkbox" class="r-5">
+                                    <span class="text">Exelent!</span>
+                                </div>
+                                <div class="r-item">
+                                    <input type="checkbox" class="r-4">
+                                    <span class="text">Good!</span>
+                                </div>
+                                <div class="r-item">
+                                    <input type="checkbox" class="r-3">
+                                    <span class="text">Usual</span>
+                                </div>
+                                <div class="r-item">
+                                    <input type="checkbox" class="r-2">
+                                    <span class="text">Bad</span>
+                                </div>
+                                <div class="r-item">
+                                    <input type="checkbox" class="r-1">
+                                    <span class="text">Horrible!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row btn-box">
+                            <button type="submit" class="btn block primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </script>
+        <script type="text/tpl" id="preview_tpl">
+            <div class="preview">
+                <img src="<%= src %>">
+            </div>
+        </script>
+        <script type="text/tpl" id="moreImg_tpl">
+            <div class="form-group">
+                <input placeholder="Image" name="image" type="text" class="form-control" required>
+            </div>
+        </script>
+        <script type="text/tpl" id="list_tpl">
+            <div class="list-container">
+                <div class="toolbar">
+                    <div class="btn-box">
+                        <span class="text">Sort by:</span>
+                        <button class="btn xlight date-btn">Date</button>
+                        <button class="btn xlight rating-btn">Rating</button>
+                    </div>
+                    <div class="form-group inline-form">
+                        <input id="search" placeholder="Search" name="search" class="form-control xlight">
+                    </div>
+                    <button class="btn xlight add-btn">
+                        <span class="icon-plus"></span>
+                        Add new event
+                    </button>
+                </div>
+                <div class="list">
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Fiesta</h2>
+                                <div class="date">10/27/2013</div>
+                                <div class="rating r-4"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://static.wallpedes.com/wallpaper/happy/happy-new-year-party-wallpaper-desktop-high-party-wallpaper-backgrounds-wallpapers-hd-tumblr-free-download-images-iphone-1080p-pics-vector.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Monster Party</h2>
+                                <div class="date">10/31/2014</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://dropthebeatz.com/wp-content/uploads/2013/08/Krewella-Party-Monster.png" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Peter's Birthday</h2>
+                                <div class="date">04/05/2015</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://74211.com/wallpaper/picture_thumb/Enjoying-Cake-on-Birthday-Party-the-Pink-Dress-Makes-Her-a-Sweet-Princess-Very-Impressive-Look-HD-Kylie-Minogue-Wallpaper.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>&hearts;&hearts; WEDDING &hearts;&hearts;</h2>
+                                <div class="date">06/06/2015</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/ac/97/0f/ac970f707e9b5778096ffb1c8dfbb54e.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>&#9760; Stag-party &#9760;</h2>
+                                <div class="date">06/05/2015</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://winshipproductions.com//wp-content/uploads/2013/07/fun-wedding-photography-ideas.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Christmas holidays</h2>
+                                <div class="date">01/01/2015</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://discover.superco.net/wp-content/uploads/2013/12/family-christmas-fun_1920x1200_75475.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>First Date</h2>
+                                <div class="date">09/10/2014</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://www.wallpaperup.com/uploads/wallpapers/2013/01/20/30484/big_thumb_0f5c7497b7f11b6bc781765d3cbc81d6.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Pussy-cat buying</h2>
+                                <div class="date">11/03/2013</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://jasonlefkowitz.net/wp-content/uploads/2013/07/Cute-Cats-cats-33440930-1280-800.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                    <div class="item-box col-4">
+                        <div class="item">
+                            <div class="title-box">
+                                <h2>Air balloon's trip</h2>
+                                <div class="date">08/13/2014</div>
+                                <div class="rating r-5"></div>
+                            </div>
+                            <div class="btn-box">
+                                <button class="btn square xlight icon-eye"></button>
+                                <button class="btn square xlight icon-trash-empty"></button>
+                            </div>
+                            <img src="http://www.wememap.com/images/WeMe/Joyce/1.jpg" width="auto" height="350">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/tpl" id="item_tpl">
+            <div class="item-box col-4">
+                <div class="item">
+                    <div class="title-box">
+                        <h2><%= title %></h2>
+                        <div class="date"><%= date %></div>
+                        <div class="rating <%= rating %>"></div>
+                    </div>
+                    <div class="btn-box">
+                        <button class="btn square xlight icon-eye"></button>
+                        <button class="btn square xlight icon-trash-empty"></button>
+                    </div>
+                    <img src="<%= src %>" width="auto" height="350">
+                </div>
+            </div>
+        </script>
+        <script type="text/tpl" id="details_tpl">
+            <div class="details col-10">
+                <div class="title-box">
+                    <h2 class="title"><%= title %></h2>
+                    <div class="<%= rating %>"></div>
+                    <div class="date"><%= date %></div>
+                    <button class="btn square xlight icon-pencil"></button>
+                </div>
+                <div class="content-box">
+                    <div class="text col-8">
+                        <span><%= description %></span>
+                    </div>
+                    <div class="media col-4">
+                        <div class="m-item">
+                            <h3>Images</h3>
+                            <div class="img-box">
+                                <img src="<%= src %>" width="200">
+                            </div>
+                        </div>
+                        <div class="m-item">
+                            <h3>Video</h3>
+                            <div class="video"></div>
+                        </div>
+                        <div class="m-item map-item">
+                            <h3>Map</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/tpl" id="map_tpl">
+            <div id="map" class="map">You didn't enter any coordinates</div>
+        </script>
+    </section>
+
+</body>
+</html>

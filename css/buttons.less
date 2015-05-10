@@ -1,0 +1,76 @@
+@import "variables";
+@import "fonts";
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  height: 44px;
+  line-height: 38px;
+  vertical-align: middle;
+  text-align: center;
+  background: none;
+  border: 3px solid @bordo-light;
+  color: @bordo-lighter;
+  text-decoration: none;
+  padding: 0 16px;
+  outline: none;
+  font-size: @base-font-size - 0.2;
+  transition: border .25s ease-in, background-color .25s ease-in, color .25s ease-in;
+
+  &:hover {
+    background: fade(@bordo-lighter, 15%);
+  }
+  &:active {
+    background: fade(@bordo-lighter, 35%);
+  }
+  &[disabled] {
+    border-color: fade(@bordo-light, 25%);
+    color: fade(@bordo-lighter, 25%);
+
+    &:hover,
+    &:active {
+      background: transparent;
+    }
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  &.primary {
+    background: @bordo;
+    border: 1px solid darken(@bordo, 3.5%);
+    text-transform: uppercase;
+    font-weight: 400;
+    color: @white;
+    border-radius: 2px;
+    border: transparent;
+
+    &:hover{
+      background: @bordo-lighter;
+    }
+
+    &:active {
+      border-color: transparent;
+      background: @bordo-dark;
+      box-shadow: 0 1px 1px fade(darken(@white, 100%), 25%) inset;
+    }
+  }
+  &.square {
+    width: 44px;
+    padding: 0;
+  }
+  &.xlight {
+    border-color: fade(@white, 50%);
+    color: @white;
+
+    &:hover {
+      background: fade(@white, 25%);
+    }
+
+    &:active,
+    &.active {
+      background: fade(@white, 45%);
+    }
+  }
+}

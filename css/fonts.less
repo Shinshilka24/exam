@@ -1,0 +1,39 @@
+.font-face(@font-name, @font-path, @font-file) {
+  font-family: @font-name;
+  src: url('../fonts/@{font-path}/@{font-file}.eot');
+  src: url('../fonts/@{font-path}/@{font-file}.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/@{font-path}/@{font-file}.woff') format('woff'),
+  url('../fonts/@{font-path}/@{font-file}.otf') format('truetype'),
+  url('../fonts/@{font-path}/@{font-file}.svg#@{font-name}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  .font-face("dobkinplain", "dobkinplain", "dobkinplain-webfont");
+}
+
+@font-face {
+  .font-face("montserratregular", "montserrat-regular", "montserrat-regular-webfont");
+}
+@font-face {
+  .font-face("walkway", "walkway", "walkway_semiBold-webfont");
+}
+@font-face {
+  .font-face("fontello", "fontello", "fontello");
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 0;
+  //font-variant: normal;
+}
+
+.icon-pencil:before { content: '\e800'; } /* '' */
+.icon-trash-empty:before { content: '\e801'; } /* '' */
+.icon-eye:before { content: '\e802'; } /* '' */
+.icon-plus:before { content: '\e803'; } /* '' */
+.icon-globe:before { content: '\e805'; } /* '' */
+.icon-list-bullet:before { content: '\e806'; } /* '' */

@@ -1,0 +1,55 @@
+@import "variables";
+
+
+.row {
+  padding-bottom: 20px;
+
+  & + .row {
+    padding-top: 20px;
+    border-top: 1px dotted @beige-lighter;
+  }
+
+  &:last-child {
+    padding: 0;
+    border-top: none;
+  }
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+
+.form-group {
+  position: relative;
+}
+.form-control {
+  width: 100%;
+  height: 44px;
+  border: 3px solid @beige-lighter;
+  background: none;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 9px 10px;
+  outline: 0;
+  transition: font-size .25s ease-in;
+
+  &:focus {
+    border-color: @bordo-light;
+  }
+
+  &.xlight {
+    border-color: fade(@white, 50%);
+    color: @white;
+  }
+
+}
+textarea.form-control {
+  display: block;
+  resize: none;
+  height: 100px;
+}
