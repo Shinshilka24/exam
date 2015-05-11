@@ -141,11 +141,13 @@ $(document).ready(function() {
 
     function showDetails() {
         $('.item-box').on('click', '.icon-eye', function() {
-            var eventTitle = $(this).find('h2').val();
-            var eventImage = $(this).find('img').attr('src');
-            var eventDate = $(this).find('.date').val();
-            var eventRating = $(this).attr('class');
-            var descEvent = $(this).find('description').val();
+            var eventTitle = $(this).closest('.item-box').find('h2').val();
+            var eventImage = $(this).closest('.item-box').find('img').attr('src');
+            var eventDate = $(this).closest('.item-box').find('.date').val();
+            var eventRating = $(this).closest('.item-box').find('.rating').attr('class');
+            var descEvent = $(this).closest('.item-box').find('description').val();
+
+            alert(eventTitle);
 
             $('.container').html(detailsTpl({title: eventTitle, rating: eventRating, src: eventImage, date: eventDate, description: descEvent}));
 

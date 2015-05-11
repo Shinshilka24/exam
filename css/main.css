@@ -811,6 +811,9 @@ small,
   content: "";
   clear: both;
 }
+.details .rating {
+  position: static;
+}
 .details .map {
   width: 200px;
   height: 200px;
