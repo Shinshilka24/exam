@@ -148,9 +148,12 @@ $(document).ready(function() {
 
             $('.container').html(detailsTpl({title: eventTitle, rating: eventRating, src: eventImage, date: eventDate, description: param1, video: param2}));
 
-
-
             showMap(param3);
+
+            $('.icon-pencil').on('click', function() {
+                showForm();
+                //$('.container').html(formTpl({title: eventTitle, rating: eventRating, src: eventImage, date: eventDate, description: param1, video: param2}));
+            });
 
         });
     }
