@@ -117,7 +117,7 @@ $(document).ready(function() {
 
             });*/
 
-            showDetails();
+            showDetails(event.description, event.video, event.coordinates);
 
             deleteEvent();
         });
@@ -139,19 +139,18 @@ $(document).ready(function() {
 
     // Show details
 
-    function showDetails() {
+    function showDetails(param1, param2, param3) {
         $('.item-box').on('click', '.icon-eye', function() {
-            var eventTitle = $(this).closest('.item-box').find('h2').val();
+            var eventTitle = $(this).closest('.item-box').find('h2').text();
             var eventImage = $(this).closest('.item-box').find('img').attr('src');
-            var eventDate = $(this).closest('.item-box').find('.date').val();
+            var eventDate = $(this).closest('.item-box').find('.date').text();
             var eventRating = $(this).closest('.item-box').find('.rating').attr('class');
-            var descEvent = $(this).closest('.item-box').find('description').val();
 
-            alert(eventTitle);
+            $('.container').html(detailsTpl({title: eventTitle, rating: eventRating, src: eventImage, date: eventDate, description: param1, video: param2}));
 
-            $('.container').html(detailsTpl({title: eventTitle, rating: eventRating, src: eventImage, date: eventDate, description: descEvent}));
 
-            showMap();
+
+            showMap(param3);
 
         });
     }
@@ -159,22 +158,21 @@ $(document).ready(function() {
 
     // Show map
 
-    function showMap() {
-        $('#map').html(mapTpl());
+    function showMap(param) {
+        $('.map-container').html(mapTpl());
 
         // Google map
 
         var mapOptions = {
-            center: new google.maps.LatLng(49.9945914, 36.2858248),
-            zoom: 12,
+            center: new google.maps.LatLng(param),
+            zoom: 8,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(49.9945914, 36.2858248),
+            position: new google.maps.LatLng(param),
             map: map,
-            title: 'Hello World!',
             draggable:true
         });
     }

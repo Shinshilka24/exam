@@ -806,6 +806,10 @@ small,
   margin-top: 0;
   font-size: 1.25rem;
 }
+.details .content-box .media iframe {
+  width: 200px;
+  height: 150px;
+}
 .details .content-box:after {
   display: table;
   content: "";
@@ -813,6 +817,7 @@ small,
 }
 .details .rating {
   position: static;
+  margin: 7px 0;
 }
 .details .map {
   width: 200px;
